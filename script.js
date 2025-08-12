@@ -1,19 +1,25 @@
+// ==============================
 // Mobile Navigation Toggle
+// ==============================
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
-hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-});
-
-// Close mobile menu when clicking on a link
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
     });
-});
 
-// Smooth scrolling for navigation links
+    // Close menu when clicking on a link
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        });
+    });
+}
+
+// ==============================
+// Smooth Scrolling for Internal Links
+// ==============================
 document.querySelectorAll('.nav-link, .btn').forEach(link => {
     link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
@@ -27,67 +33,58 @@ document.querySelectorAll('.nav-link, .btn').forEach(link => {
     });
 });
 
-// EmailJS Configuration for Contact Form
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize EmailJS with your user ID
-    emailjs.init("87Q11KLCQrwMVQUqL"); // Replace with your actual EmailJS user ID
-    
+// ==============================
+// EmailJS Configuration (Only on Contact Page)
+// ==============================
+document.addEventListener('DOMContentLoaded', function () {
     const contactForm = document.getElementById('contact-form');
     const formMessage = document.getElementById('form-message');
-    
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
+
+    if (contactForm && formMessage) {
+        // Initialize EmailJS
+        emailjs.init({ publicKey: "87Q11KLCQrwMVQUqL" });
+
+        contactForm.addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             // Validate form before submission
             if (!validateForm(contactForm)) {
-                formMessage.style.display = 'block';
-                formMessage.style.color = '#ff4757';
-                formMessage.textContent = 'Please fill in all required fields.';
-                setTimeout(() => {
-                    formMessage.style.display = 'none';
-                }, 3000);
+                showMessage(formMessage, 'Please fill in all required fields.', '#ff4757');
                 return;
             }
-            
+
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
-            
+
             // Show loading state
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
-            
+
             // Send email using EmailJS
             emailjs.sendForm('service_afsu3sl', 'template_bkv7fwi', contactForm)
-                .then(function(response) {
-                    formMessage.style.display = 'block';
-                    formMessage.style.color = '#00ff88';
-                    formMessage.textContent = 'Message sent successfully! I\'ll get back to you soon.';
+                .then(() => {
+                    showMessage(formMessage, 'Message sent successfully! I\'ll get back to you soon.', '#00ff88');
                     contactForm.reset();
-                }, function(error) {
-                    formMessage.style.display = 'block';
-                    formMessage.style.color = '#ff4757';
-                    formMessage.textContent = 'Failed to send message. Please try again or email me directly at bajaojoshua2@gmail.com';
-                    console.error('EmailJS error:', error);
                 })
-                .finally(function() {
+                .catch(error => {
+                    console.error('EmailJS error:', error);
+                    showMessage(formMessage, 'Failed to send message. Please try again later.', '#ff4757');
+                })
+                .finally(() => {
                     submitBtn.textContent = originalText;
                     submitBtn.disabled = false;
-                    
-                    // Hide message after 5 seconds
-                    setTimeout(() => {
-                        formMessage.style.display = 'none';
-                    }, 5000);
                 });
         });
     }
 });
 
-// Form validation
+// ==============================
+// Helper Functions
+// ==============================
 function validateForm(form) {
     const inputs = form.querySelectorAll('input[required], textarea[required]');
     let isValid = true;
-    
+
     inputs.forEach(input => {
         if (!input.value.trim()) {
             input.classList.add('error');
@@ -96,11 +93,23 @@ function validateForm(form) {
             input.classList.remove('error');
         }
     });
-    
+
     return isValid;
 }
 
-// Add CSS for form messages
+function showMessage(element, message, color) {
+    element.style.display = 'block';
+    element.style.color = color;
+    element.textContent = message;
+
+    setTimeout(() => {
+        element.style.display = 'none';
+    }, 5000);
+}
+
+// ==============================
+// Inject minimal CSS for error highlighting
+// ==============================
 const style = document.createElement('style');
 style.textContent = `
     #form-message {
