@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
             submitBtn.disabled = true;
             
             // Send email using EmailJS
-            emailjs.sendForm('service_afsu3sl', 'template_obpjuwo', contactForm)
+            emailjs.sendForm('service_afsu3sl', 'template_bkv7fwi', contactForm)
                 .then(function(response) {
                     formMessage.style.display = 'block';
                     formMessage.style.color = '#00ff88';
