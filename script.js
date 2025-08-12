@@ -30,7 +30,7 @@ document.querySelectorAll('.nav-link, .btn').forEach(link => {
 // EmailJS Configuration for Contact Form
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize EmailJS with your user ID
-    emailjs.init("bajaojoshua2@gmail.com"); // Replace with your actual EmailJS user ID
+    emailjs.init("87Q11KLCQrwMVQUqL"); // Replace with your actual EmailJS user ID
     
     const contactForm = document.getElementById('contact-form');
     const formMessage = document.getElementById('form-message');
