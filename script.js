@@ -1,125 +1,67 @@
-// ==============================
-// Mobile Navigation Toggle
-// ==============================
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
+const navToggle = document.querySelector('.nav-toggle');
+const navPanel = document.querySelector('.nav-panel');
+const navLinks = document.querySelectorAll('.nav-link');
 
-if (hamburger && navMenu) {
-    hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
+if (navToggle && navPanel) {
+    navToggle.addEventListener('click', () => {
+        const isOpen = navPanel.classList.toggle('is-open');
+        navToggle.setAttribute('aria-expanded', String(isOpen));
     });
 
-    // Close menu when clicking on a link
-    document.querySelectorAll('.nav-link').forEach(link => {
+    navLinks.forEach((link) => {
         link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
+            navPanel.classList.remove('is-open');
+            navToggle.setAttribute('aria-expanded', 'false');
         });
     });
 }
 
-// ==============================
-// Smooth Scrolling for Internal Links
-// ==============================
-document.querySelectorAll('.nav-link, .btn').forEach(link => {
-    link.addEventListener('click', (e) => {
-        const href = link.getAttribute('href');
-        if (href && href.startsWith('#')) {
-            e.preventDefault();
-            const targetSection = document.querySelector(href);
-            if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth' });
+const reveals = document.querySelectorAll('.reveal');
+
+if ('IntersectionObserver' in window && reveals.length > 0) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
             }
-        }
-    });
-});
-
-// ==============================
-// EmailJS Configuration (Only on Contact Page)
-// ==============================
-document.addEventListener('DOMContentLoaded', function () {
-    const contactForm = document.getElementById('contact-form');
-    const formMessage = document.getElementById('form-message');
-
-    if (contactForm && formMessage) {
-        // Initialize EmailJS
-        emailjs.init({ publicKey: "87Q11KLCQrwMVQUqL" });
-
-        contactForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-
-            // Validate form before submission
-            if (!validateForm(contactForm)) {
-                showMessage(formMessage, 'Please fill in all required fields.', '#ff4757');
-                return;
-            }
-
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-
-            // Show loading state
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-
-            // Send email using EmailJS
-            emailjs.sendForm('service_afsu3sl', 'template_bkv7fwi', contactForm)
-                .then(() => {
-                    showMessage(formMessage, 'Message sent successfully! I\'ll get back to you soon.', '#00ff88');
-                    contactForm.reset();
-                })
-                .catch(error => {
-                    console.error('EmailJS error:', error);
-                    showMessage(formMessage, 'Failed to send message. Please try again later.', '#ff4757');
-                })
-                .finally(() => {
-                    submitBtn.textContent = originalText;
-                    submitBtn.disabled = false;
-                });
         });
-    }
-});
-
-// ==============================
-// Helper Functions
-// ==============================
-function validateForm(form) {
-    const inputs = form.querySelectorAll('input[required], textarea[required]');
-    let isValid = true;
-
-    inputs.forEach(input => {
-        if (!input.value.trim()) {
-            input.classList.add('error');
-            isValid = false;
-        } else {
-            input.classList.remove('error');
-        }
+    }, {
+        threshold: 0.18,
     });
 
-    return isValid;
+    reveals.forEach((item) => revealObserver.observe(item));
+} else {
+    reveals.forEach((item) => item.classList.add('is-visible'));
 }
 
-function showMessage(element, message, color) {
-    element.style.display = 'block';
-    element.style.color = color;
-    element.textContent = message;
+const contactForm = document.getElementById('contact-form');
+const formMessage = document.getElementById('form-message');
 
-    setTimeout(() => {
-        element.style.display = 'none';
-    }, 5000);
+if (contactForm && formMessage) {
+    contactForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const formData = new FormData(contactForm);
+        const name = String(formData.get('name') || '').trim();
+        const email = String(formData.get('email') || '').trim();
+        const subject = String(formData.get('subject') || '').trim();
+        const message = String(formData.get('message') || '').trim();
+
+        if (!name || !email || !subject || !message) {
+            formMessage.textContent = 'Please complete every field before sending.';
+            return;
+        }
+
+        const body = [
+            `Name: ${name}`,
+            `Email: ${email}`,
+            '',
+            message,
+        ].join('\n');
+
+        const mailtoLink = `mailto:bajaojoshua2@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.location.href = mailtoLink;
+        formMessage.textContent = 'Your email app should open with this message ready to send.';
+    });
 }
-
-// ==============================
-// Inject minimal CSS for error highlighting
-// ==============================
-const style = document.createElement('style');
-style.textContent = `
-    #form-message {
-        padding: 10px;
-        border-radius: 5px;
-        margin-top: 10px;
-        font-weight: 500;
-    }
-    .form-group input.error, .form-group textarea.error {
-        border-color: #ff4757;
-    }
-`;
-document.head.appendChild(style);

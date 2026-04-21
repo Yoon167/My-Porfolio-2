@@ -1,123 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Skills - HR & IT Professional Portfolio</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills | Joshua Bajao</title>
+    <meta name="description" content="Explore Joshua Bajao's mobile app, UI, front-end, and product presentation skills.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <i class="fas fa-rocket"></i>
-                <span>Portfolio</span>
-            </div>
-            <ul class="nav-menu">
-                <li><a href="index.html" class="nav-link">Home</a></li>
-                <li><a href="about.html" class="nav-link">About</a></li>
-                <li><a href="skills.html" class="nav-link active">Skills</a></li>
-                <li><a href="experience.html" class="nav-link">Experience</a></li>
-                <li><a href="projects.html" class="nav-link">Projects</a></li>
-                <li><a href="contact.html" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+<body data-page="skills">
+    <div class="site-shell">
+        <header class="topbar">
+            <nav class="navbar container">
+                <a class="brand" href="index.html" aria-label="Joshua Bajao home page">
+                    <span class="brand-mark">JB</span>
+                    <span class="brand-text">
+                        <strong>Joshua Bajao</strong>
+                        <small>Mobile App Developer</small>
+                    </span>
+                </a>
+                <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Open navigation">
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="nav-panel">
+                    <ul class="nav-links">
+                        <li><a href="index.html" class="nav-link">Home</a></li>
+                        <li><a href="about.html" class="nav-link">About</a></li>
+                        <li><a href="skills.html" class="nav-link is-active">Skills</a></li>
+                        <li><a href="experience.html" class="nav-link">Experience</a></li>
+                        <li><a href="projects.html" class="nav-link">Projects</a></li>
+                        <li><a href="contact.html" class="nav-link">Contact</a></li>
+                    </ul>
+                    <a href="contact.html" class="button button-ghost">Book a Conversation</a>
+                </div>
+            </nav>
+        </header>
 
-    <section class="skills">
-        <div class="container">
-            <h2 class="section-title">Skills & Expertise</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3><i class="fas fa-users"></i> Human Resources</h3>
-                    <div class="skill-items">
-                        <span class="skill-item">Talent Acquisition</span>
-                        <span class="skill-item">Performance Management</span>
-                        <span class="skill-item">Employee Relations</span>
-                        <span class="skill-item">HR Analytics</span>
-                        <span class="skill-item">Training & Development</span>
-                        <span class="skill-item">Compensation & Benefits</span>
-                    </div>
+        <main>
+            <section class="page-hero">
+                <div class="container page-hero-inner reveal">
+                    <p class="eyebrow">Skills</p>
+                    <h1>Craft, systems, and product taste.</h1>
+                    <p>My work blends interface design, front-end implementation, product structure, and storytelling for modern digital brands.</p>
                 </div>
-                
-                <div class="skill-category">
-                    <h3><i class="fas fa-laptop-code"></i> Information Technology</h3>
-                    <div class="skill-items">
-                        <span class="skill-item">System Administration</span>
-                        <span class="skill-item">Database Management</span>
-                        <span class="skill-item">Network Security</span>
-                        <span class="skill-item">Cloud Computing</span>
-                        <span class="skill-item">IT Support</span>
-                        <span class="skill-item">Project Management</span>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h3><i class="fas fa-chart-line"></i> Analytics & Tools</h3>
-                    <div class="skill-items">
-                        <span class="skill-item">Excel & Power BI</span>
-                        <span class="skill-item">SQL & Databases</span>
-                        <span class="skill-item">Python</span>
-                        <span class="skill-item">HRIS Systems</span>
-                        <span class="skill-item">Workday</span>
-                        <span class="skill-item">SAP SuccessFactors</span>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="skills-progress">
-                <div class="progress-item">
-                    <div class="progress-info">
-                        <span>HR Strategy</span>
-                        <span>95%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" data-width="95"></div>
-                    </div>
-                </div>
-                <div class="progress-item">
-                    <div class="progress-info">
-                        <span>IT Solutions</span>
-                        <span>90%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" data-width="90"></div>
-                    </div>
-                </div>
-                <div class="progress-item">
-                    <div class="progress-info">
-                        <span>Data Analysis</span>
-                        <span>85%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" data-width="85"></div>
-                    </div>
-                </div>
-                <div class="progress-item">
-                    <div class="progress-info">
-                        <span>Leadership</span>
-                        <span>92%</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" data-width="92"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2024 HR & IT Professional Portfolio. Crafted with <i class="fas fa-heart"></i> and innovation.</p>
-        </div>
-    </footer>
+            <section class="section section-light">
+                <div class="container skill-grid">
+                    <article class="skill-card reveal">
+                        <i class="fa-solid fa-mobile-screen-button"></i>
+                        <h2>Mobile App Development</h2>
+                        <p>App concepts, user flows, feature architecture, onboarding screens, and polished mobile-first experiences.</p>
+                    </article>
+                    <article class="skill-card reveal">
+                        <i class="fa-solid fa-palette"></i>
+                        <h2>Luxury UI Direction</h2>
+                        <p>Elegant layouts, intentional typography, premium spacing, and elevated visual systems that feel custom-made.</p>
+                    </article>
+                    <article class="skill-card reveal">
+                        <i class="fa-solid fa-code"></i>
+                        <h2>Front-end Delivery</h2>
+                        <p>Responsive HTML, CSS, and JavaScript for static sites, showcase pages, and app presentation experiences.</p>
+                    </article>
+                    <article class="skill-card reveal">
+                        <i class="fa-solid fa-diagram-project"></i>
+                        <h2>Product Thinking</h2>
+                        <p>Feature prioritization, clear navigation, conversion-focused layouts, and flows that support user trust.</p>
+                    </article>
+                </div>
+            </section>
+
+            <section class="section section-dark">
+                <div class="container">
+                    <div class="section-heading reveal">
+                        <p class="eyebrow">Capability</p>
+                        <h2>Strength areas.</h2>
+                    </div>
+                    <div class="progress-list">
+                        <div class="progress-item reveal">
+                            <div class="progress-meta">
+                                <span>Mobile product design</span>
+                                <strong>96%</strong>
+                            </div>
+                            <div class="progress-track"><span style="width: 96%"></span></div>
+                        </div>
+                        <div class="progress-item reveal">
+                            <div class="progress-meta">
+                                <span>Portfolio and landing pages</span>
+                                <strong>94%</strong>
+                            </div>
+                            <div class="progress-track"><span style="width: 94%"></span></div>
+                        </div>
+                        <div class="progress-item reveal">
+                            <div class="progress-meta">
+                                <span>User experience structure</span>
+                                <strong>90%</strong>
+                            </div>
+                            <div class="progress-track"><span style="width: 90%"></span></div>
+                        </div>
+                        <div class="progress-item reveal">
+                            <div class="progress-meta">
+                                <span>Creative product presentation</span>
+                                <strong>93%</strong>
+                            </div>
+                            <div class="progress-track"><span style="width: 93%"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section section-light">
+                <div class="container stack-panel reveal">
+                    <div>
+                        <p class="eyebrow">Tools and Ideas</p>
+                        <h2>What I enjoy building with.</h2>
+                    </div>
+                    <div class="tag-wall">
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>JavaScript</span>
+                        <span>Responsive Design</span>
+                        <span>Landing Pages</span>
+                        <span>App UI</span>
+                        <span>Story-driven Product Design</span>
+                        <span>Faith-tech Concepts</span>
+                        <span>Design Presentation</span>
+                        <span>Content Architecture</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <div class="container footer-row">
+                <div>
+                    <p class="footer-title">Joshua Bajao</p>
+                    <p class="footer-copy">Clickable, responsive, premium digital experiences.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="projects.html">Projects</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="mailto:bajaojoshua2@gmail.com">Email</a>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
